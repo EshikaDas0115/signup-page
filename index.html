@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+function togglePassword(){
+let pass=document.getElementById("password");
+
+if(pass.type==="password"){
+pass.type="text";
+}
+else{
+pass.type="password";
+}
+}
+
+function showSignup(){
+document.getElementById("signupForm").style.display="block";
+document.getElementById("signinForm").style.display="none";
+document.getElementById("forgotForm").style.display="none";
+}
+
+function showSignin(){
+document.getElementById("signupForm").style.display="none";
+document.getElementById("signinForm").style.display="block";
+document.getElementById("forgotForm").style.display="none";
+}
+
+function showForgot(){
+document.getElementById("signupForm").style.display="none";
+document.getElementById("signinForm").style.display="none";
+document.getElementById("forgotForm").style.display="block";
+}
+
+function goDashboard(){
+window.location.assign("dashboard.html");    
+}
+
+function toggleConfirmPassword(){
+let confirmPass=document.getElementById("confirmPassword");
+
+if(confirmPass.type==="password"){
+    confirmPass.type="text";
+}
+else{
+    confirmPass.type="password";
+}
+}
+
+function validateForm(){
+
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+let confirmPassword=document.getElementById("confirmPassword").value;
+
+if(name=="" || email=="" || password=="" || confirmPassword==""){
+alert("Please fill all fields");
+return;
+}
+
+if(password!==confirmPassword){
+alert("Passwords do not match");
+return;
+}
+
+document.getElementById("successPopup").style.display="flex";
+
+}
+
+function goToDashboard(){
+window.location.assign("dashboard.html");
+}
+
+</script>
+
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us, please login with your personal info</p>
+            <button type="button" onclick="showSignin()">
+                LOGIN
+            </button>
+        </div>
+        <div class="right-panel">
+           <div class="auth-tabs">
+            <button class="active" onclick="showSignup()">Sign Up</button>
+            <button onclick="showSignin()">Sign In</button>
+           </div>
+           <div class="social-icons">
+            <span>📘</span>
+            <span>🐦</span>
+            <span>🟢</span>
+            <span>💼</span>
+           </div>
+
+            <p class="small-text">or use your email for registration</p>
+
+            <div id="signupForm">
+            <form>
+                <input id="name" type="text" placeholder="Name">
+                <input id="email" type="email" placeholder="Email">
+                <div class="password-box">
+                   <input id="password" type="password" placeholder="Password">
+                    <span onclick="togglePassword()">👁</span>   
+                </div>
+                <div class="password-box">
+                    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+                    <span onclick="toggleConfirmPassword()">👁</span>
+                </div>
+
+                <div class="options">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                    <a href="#" onclick="showForgot()">Forgot Password?</a>
+                </div>
+
+                <button class="register-btn" type="button"
+                onclick="validateForm()">
+                REGISTER
+                </button>
+            </form>
+            </div>
+            <div id="signinForm" style="display:none;">
+                <form>
+                    <input type="email" placeholder="Email">
+                    <div class="password-box">
+                        <input type="password" placeholder="Password">
+                        <span>👁</span>
+                    </div>
+                   <a class="login-link-btn" href="dashboard.html">LOGIN</a>
+                </form>
+            </div>
+            <div id="forgotForm" style="display:none;">
+                <h2>Reset Password</h2>
+                <p class="small-text">
+                    Enter your email to receive reset instructions
+                </p>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">
+                        SEND
+                    </button>
+                </form>
+                <p class="back-login" onclick="showSignin()">
+                    Back to Login
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="successPopup" class="popup">
+        <div class="popup-box">
+            <h2>Registration Successful 🎉</h2>
+            <p>Your account has been created.</p>
+            <button onclick="goToDashboard()">
+                Continue
+            </button>
+        </div>
+</div>
+</body>
+</html>
